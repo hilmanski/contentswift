@@ -22,17 +22,34 @@ export default async function Editor({
     const data = await getData(params.id);
     const searchResult = data.search_result
 
+
     return (
-        <div className="my-10 max-w-6xl mx-auto">
-            <h1>Editor document with id: {params.id}</h1>
+        <div className="my-10 max-w-7xl mx-auto">
+
+            <section className="fixed">
+                <p>Menu</p>
+
+                <div className="text-sm">
+                    <a className="block mt-2" href="#answer-box">#Google Results</a>
+                    <a className="block mt-2" href="#related-questions">#Related Questions</a>
+                    <a className="block mt-2" href="#related-searches">#Related Searches</a>
+                    <a className="block mt-2" href="#terms">#Terms</a>
+                    <a className="block mt-2" href="#outline">#Outline</a>
+                </div>
+            </section>
+
+            <section className="ml-[200px] w-8/12">
             
-            <div>
+            <p className="text-xl">
                 Title: {data.title}
-            </div>
+            </p>
+
 
             {
                 searchResult.answer_box && (
-                    <section className="my-5 p-3 border border-emerald-600 text-sm">
+                    <section 
+                    id="answer-box"
+                    className="my-5 p-3 border border-emerald-600 text-sm">
                     <h3 className="text-emerald-700 ">Answer Box (Featued Snippet)</h3>
                     <p className="italic">
                         {
@@ -69,7 +86,9 @@ export default async function Editor({
 
             {
                 searchResult.related_questions.length > 0 && (
-                    <section className="my-5 p-3 border border-emerald-600 text-sm">
+                    <section 
+                    id="related-questions"
+                    className="my-5 p-3 border border-emerald-600 text-sm">
                     <h3 className="text-emerald-700 mb-2">Related Questions</h3>
                     {
                         searchResult.related_questions.map((item, index) => {
@@ -87,7 +106,9 @@ export default async function Editor({
 
             {
                 searchResult.related_searches.length > 0 && (
-                    <section className="my-5 p-3 border border-emerald-600 text-sm">
+                    <section 
+                    id="related-searches"
+                    className="my-5 p-3 border border-emerald-600 text-sm">
                     <h3 className="text-emerald-700 mb-2">Related Searches</h3>
                     {
                         searchResult.related_searches.map((item, index) => {
@@ -103,6 +124,7 @@ export default async function Editor({
             }
 
             <Terms id={params.id} />
+            </section>
         </div>
     )
 }

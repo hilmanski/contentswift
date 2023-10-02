@@ -35,13 +35,13 @@ export default function Terms({id} : {id: string}) {
 
     return (
         <section className="my-5">
-            <h2>Terms </h2>
-            <p> Average words length: {result.averageWords} </p>
-
+        
             {
                 result.topKeywords && (
-                <div className="my-5">
-                    <h3>Top Keywords</h3>
+                <div
+                    id="terms"
+                    className="">
+                    <h3 className="mt-10 mb-5 text-xl font-bold">Terms (Top Keywords)</h3>
                     <ul>
                         {
                             result.topKeywords.map((term: string, index: number) => {
@@ -60,8 +60,11 @@ export default function Terms({id} : {id: string}) {
 
             {
                 result.contentInfo && (
-                <div className="my-5 border p-5 border-green-700 text-sm">
-                    <h3>Competitor reference</h3>
+                <div 
+                    id="outline"
+                    className="my-5 border p-5 border-green-700 text-sm">
+                    <h3 className="mt-10 mb-5 text-xl font-bold">Competitor reference</h3>
+                    <p> Average words length: {result.averageWords} </p>
                     <div className="flex justify-between space-x-5 overflow-x-scroll">
                         {
                             result.contentInfo.map((site: string, index: number) => {

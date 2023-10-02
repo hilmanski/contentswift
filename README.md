@@ -1,3 +1,5 @@
+![content swift logo](/contentswift-logo.webp)
+
 
 # About
 Content research tool alternative for SEO.
@@ -79,6 +81,8 @@ Project is available at localhost:3000
 
 
 ## TODO
+- Add list of contents (All old data from DB)
+- User can delete a content
 - Add visual screenshot
 - Add sample compare to other research tool
 - Add short video
