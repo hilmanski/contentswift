@@ -1,15 +1,19 @@
+
 # About
 Content research tool alternative for SEO.
 
-By using this tool, you'll get any relevant information regarding certain keyword search and hints on what other top ranking results did with their article/page.
+Using this tool, you'll get relevant information regarding specific keyword searches and hints on what other top-ranking results did with their article/page.
 
 > Right now we're focusing on Google SERP only
 
-*The commercial version for this open source would be something like:
-Surfer SEO, ClearScope, NeuronWriter, etc.. (of course they offer more features than this).*
+*The commercial version for this open source tool would be something like:
+Surfer SEO, Frase io, ClearScope, NeuronWriter, etc.. (of course they offer more features than this).*
 
-- This is for personal usage, so no authentication setup needed.
+- This is for personal usage, no authentication setup needed in the app itself.
 - Sign up to [SerpApi](https://serpapi.com) to get FREE Serp search results credit
+
+## Status
+Under heavy development. Not for production.
 
 ## Tech
 
@@ -29,8 +33,8 @@ Scraping Google search result on our own will require a lot of time to prevent u
 
 ## Setup env file
 
-- Get your `API_KEY` from serpapi.com
 - Create new empty `.env` file at `/backend-crt/src` folder
+- Get your `API_KEY` from serpapi.com
 - Paste your Serp api key in `.env` file at `backend-crt`
 ```
 SERPAPI_KEY=$here_is_your_api_key
@@ -72,6 +76,12 @@ cd frontend-crt && yarn dev
 ```
 
 Project is available at localhost:3000
+
+
+## TODO
+- Add visual screenshot
+- Add sample compare to other research tool
+- Add short video
 
 ## Potential Issue / improvement
 - Remove code as part of word frequency: Ignore content between triple backtick
