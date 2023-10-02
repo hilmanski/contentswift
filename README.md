@@ -1,6 +1,6 @@
 
 # About
-Content research tool alternative for SEO.
+ContentSwift - Content research/optimization tool for SEO.
 
 Using this tool, you'll get relevant information regarding specific keyword searches and hints on what other top-ranking results did with their article/page.
 
