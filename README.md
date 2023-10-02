@@ -1,14 +1,3 @@
-## TODO
-
-- Work on editor page http://localhost:3000/editor/{postId}
-- Show immidiate useful resources
-- Fetch/Scrape each choosenLinks in the background
-    - when to get back ?
-    - show: 
-        - newspaper3K top 20 words
-        - show Total words
-    free proxy: https://app.zenrows.com/register?p=free
-
 # About
 Content research tool alternative for SEO.
 
@@ -86,5 +75,5 @@ Project is available at localhost:3000
 
 ## Potential Issue / improvement
 - Remove code as part of word frequency: Ignore content between triple backtick
-- User rotating-proxy to bypass individual web scraping
+- User rotating-proxy to bypass individual web scraping (Find free proxy as a start)
 - Right now keywords is limited per 1 word, how to get 2-3 keywords effectively (Use thread/parallel for faster function).
