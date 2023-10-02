@@ -44,6 +44,13 @@ archive.zip
 /.next/
 /out/
 
+# Since frontend (nextjs) in a subfolder
+.next/
+./out/
+# Ignore node_modules in any subfolder
+**/node_modules/
+
+
 # production
 /build
 
