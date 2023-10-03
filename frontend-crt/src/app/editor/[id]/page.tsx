@@ -1,7 +1,8 @@
+import Link from "next/link";
 import Terms from "@/components/Terms";
 
 async function getData(id: string) {
-    const res = await fetch(`http://localhost:8000/post/${id}`)
+    const res = await fetch(`http://localhost:8000/posts/${id}`)
     
     if (!res.ok) {
         throw new Error('Failed to fetch data')
@@ -39,10 +40,16 @@ export default async function Editor({
             </section>
 
             <section className="ml-[200px] w-8/12">
-            
-            <p className="text-xl">
-                Title: {data.title}
-            </p>
+
+                <div className="flex justify-between">
+                    <p className="text-xl">
+                        Title: {data.title}
+                    </p>
+
+                    <Link href="/" className="underline">
+                        Home
+                    </Link>
+                </div>
 
 
             {

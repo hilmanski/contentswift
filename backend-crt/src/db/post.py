@@ -1,9 +1,21 @@
 from sqlmodel import Session
 from .models import Post, engine
 
+def get_all_post():
+    session = Session(engine)
+    posts = session.query(Post).all()
+    return posts
+
 def get_post(post_id: int):
     session = Session(engine)
     post = session.get(Post, post_id)
+    return post
+
+def remove_post(post_id: int):
+    session = Session(engine)
+    post = session.get(Post, post_id)
+    session.delete(post)
+    session.commit()
     return post
 
 def add_post(

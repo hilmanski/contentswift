@@ -1,6 +1,5 @@
 ![content swift logo](/contentswift-logo.webp)
 
-
 # About
 ContentSwift - Content research/optimization tool for SEO.
 
@@ -68,26 +67,24 @@ Run migration
 python db/models.py
 ```
 
-3. run Frontend (API)
-(Not inside python virtual env)
-Now from root folder (another terminal or just go back). 
+3. Run Frontend (API)
+- Not inside python virtual env
+- Now from root folder (another terminal or just go back). 
 
 
 ```
 cd frontend-crt && yarn dev
 ```
 
-Project is available at localhost:3000
+Project is available at http://localhost:3000
 
 
 ## TODO
-- Add list of contents (All old data from DB)
-- User can delete a content
 - Add visual screenshot
 - Add sample compare to other research tool
+- add proper doc/landing page
 - Add short video
 
 ## Potential Issue / improvement
 - Remove code as part of word frequency: Ignore content between triple backtick
 - User rotating-proxy to bypass individual web scraping (Find free proxy as a start)
-- Right now keywords is limited per 1 word, how to get 2-3 keywords effectively (Use thread/parallel for faster function).

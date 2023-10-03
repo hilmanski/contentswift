@@ -10,11 +10,12 @@ from newspaper import Article, Config
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.util import bigrams, trigrams
 
 import operator
 import nltk
 
-from .db.post import add_post, save_links, get_post
+from .db.post import add_post, save_links, get_post, get_all_post, remove_post
 
 
 
@@ -86,9 +87,19 @@ def saveLinks(linkData: dict):
 
     return post
 
-@app.get('/post/{post_id}')
+@app.get('/posts')
+def getPosts():
+    posts = get_all_post()
+    return posts
+
+@app.get('/posts/{post_id}')
 def getPost(post_id: str):
     post = get_post(post_id)
+    return post
+
+@app.delete('/posts/{post_id}')
+def deletePost(post_id: str):
+    post = remove_post(post_id)
     return post
 
 @app.get('/scrape/{post_id}')
@@ -120,22 +131,6 @@ async def scrape(post_id: str):
         }
     }
 
-def _getTopKeywords(allKeywords):
-    MAX_KEYWORD = 15
-    
-    topKeywords = {}
-    for word_dict in allKeywords:
-        word = word_dict['word'].lower()
-        
-        if word in topKeywords:
-            topKeywords[word] += word_dict['frequency']
-        else:
-            topKeywords[word] = word_dict['frequency']
-
-    # sort the dictionary by the frequency in descending order and get the first 10 items
-    sorted_topKeywords = sorted(topKeywords.items(), key=operator.itemgetter(1), reverse=True)[:MAX_KEYWORD]
-    return sorted_topKeywords
-
 def _scrape_article(link):
     article = Article(link, keep_article_html=True)
     content = None
@@ -162,12 +157,20 @@ def _scrape_article(link):
     if content == None:
         return None
 
-    # Find Terms Frequency
     text = content.lower()
     word_tokens = word_tokenize(text)
     stop_words = set(stopwords.words('english'))
     filtered_text = [word for word in word_tokens if word.isalpha() and word not in stop_words]
-    freq_dist = nltk.FreqDist(filtered_text)
+    
+    single_freq_dist = nltk.FreqDist(filtered_text)
+    bigram_freq_dist = nltk.FreqDist(bigrams(filtered_text))
+    trigram_freq_dist = nltk.FreqDist(trigrams(filtered_text))
+
+    # # turn each tuple into a string
+
+    # combine all frequency distribution
+    freq_dist = single_freq_dist + bigram_freq_dist + trigram_freq_dist
+
 
     keywords = []
     for word, frequency in freq_dist.most_common(10):
@@ -183,3 +186,24 @@ def _scrape_article(link):
         "keywords": keywords,
         "headings": headings,
     }
+
+def _getTopKeywords(allKeywords):
+    MAX_KEYWORD = 15
+    
+    topKeywords = {}
+    for word_dict in allKeywords:
+        # if word_dict['word'] is tuple, convert it to string
+        _word = word_dict['word']
+        if isinstance(_word, tuple):
+            _word = ' '.join(word_dict['word'])
+
+        word = _word.lower()
+        
+        if word in topKeywords:
+            topKeywords[word] += word_dict['frequency']
+        else:
+            topKeywords[word] = word_dict['frequency']
+
+    # sort the dictionary by the frequency in descending order and get the first 10 items
+    sorted_topKeywords = sorted(topKeywords.items(), key=operator.itemgetter(1), reverse=True)[:MAX_KEYWORD]
+    return sorted_topKeywords

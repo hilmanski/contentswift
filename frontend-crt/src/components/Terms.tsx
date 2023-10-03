@@ -108,7 +108,11 @@ export default function Terms({id} : {id: string}) {
                                                             return (
                                                                 <li key={index} 
                                                                     className="inline-block bg-gray-200 mb-1 rounded-full px-3 py-1 text-sm text-gray-700 mr-2">
-                                                                    {keyword.word}: {keyword.frequency}
+                                                                    
+                                                                    {
+                                                                        Array.isArray(keyword.word) ? keyword.word.join(' ') : keyword.word
+                                                                    } : 
+                                                                    {keyword.frequency}
                                                                 </li>
                                                             )
                                                         })
