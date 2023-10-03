@@ -48,7 +48,7 @@ export default function Terms({id} : {id: string}) {
                                 return (
                                     <li className="inline-block bg-gray-200 mb-1 rounded-full px-3 py-1 text-sm text-gray-700 mr-2"
                                         key={index}>
-                                        {term[0]}: {parseInt(term[1]) / result.contentInfo.length}
+                                        {term[0]}: {(parseInt(term[1]) / result.contentInfo.length).toFixed(2)}
                                     </li>
                                 )
                             })

@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from concurrent.futures import ThreadPoolExecutor
 import asyncio
 
-from newspaper import Article, Config
+import newspaper
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -107,11 +107,13 @@ async def scrape(post_id: str):
     post = get_post(post_id)
     links = post.choosen_links
 
+    lang = post.search_query['hl']
+
     contentInfo = []
     allKeywords = []
 
     with ThreadPoolExecutor() as executor:
-        tasks = [asyncio.get_running_loop().run_in_executor(executor, _scrape_article, link) for link in links]
+        tasks = [asyncio.get_running_loop().run_in_executor(executor, _scrape_article, link, lang) for link in links]
         results = await asyncio.gather(*tasks)
 
     for result in results:
@@ -131,8 +133,12 @@ async def scrape(post_id: str):
         }
     }
 
-def _scrape_article(link):
-    article = Article(link, keep_article_html=True)
+# Currently lang get from hl query parameter
+# There's no guarantee it match available language at nltk 
+#    https://stackoverflow.com/questions/54573853/nltk-available-languages-for-stopwords
+
+def _scrape_article(link, lang):
+    article = newspaper.Article(link, keep_article_html=True)
     content = None
 
     try:
@@ -156,17 +162,21 @@ def _scrape_article(link):
 
     if content == None:
         return None
+    
+    _lang = 'en'
+    if lang == 'id':
+        _lang = 'indonesian'
+    # later add more language, mapping hl query -> nltk language
+    # https://stackoverflow.com/questions/54573853/nltk-available-languages-for-stopwords
 
     text = content.lower()
     word_tokens = word_tokenize(text)
-    stop_words = set(stopwords.words('english'))
+    stop_words = set(stopwords.words(_lang))
     filtered_text = [word for word in word_tokens if word.isalpha() and word not in stop_words]
     
     single_freq_dist = nltk.FreqDist(filtered_text)
     bigram_freq_dist = nltk.FreqDist(bigrams(filtered_text))
     trigram_freq_dist = nltk.FreqDist(trigrams(filtered_text))
-
-    # # turn each tuple into a string
 
     # combine all frequency distribution
     freq_dist = single_freq_dist + bigram_freq_dist + trigram_freq_dist
