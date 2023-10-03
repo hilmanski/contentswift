@@ -1,5 +1,5 @@
 import os
-import random
+# import random
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from serpapi import GoogleSearch
@@ -16,7 +16,7 @@ from nltk.util import bigrams, trigrams
 import operator
 import nltk
 
-from .db.post import add_post, save_links, get_post, get_all_post, remove_post
+from .db.post import add_post, save_links, get_post, get_all_post, remove_post, update_post
 
 
 
@@ -96,6 +96,11 @@ def getPosts():
 @app.get('/posts/{post_id}')
 def getPost(post_id: str):
     post = get_post(post_id)
+    return post
+
+@app.put('/posts/{post_id}')
+def updatePost(post_id: str, data: dict):
+    post = update_post(post_id, data)
     return post
 
 @app.delete('/posts/{post_id}')

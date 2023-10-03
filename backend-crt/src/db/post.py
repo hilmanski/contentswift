@@ -11,6 +11,17 @@ def get_post(post_id: int):
     post = session.get(Post, post_id)
     return post
 
+def update_post(post_id: int, data: dict):
+    session = Session(engine)
+    post = session.get(Post, post_id)
+    for key, value in data.items():
+        setattr(post, key, value)
+    session.add(post)
+    session.commit()
+    session.refresh(post)
+    
+    return post
+
 def remove_post(post_id: int):
     session = Session(engine)
     post = session.get(Post, post_id)
