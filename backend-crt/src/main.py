@@ -163,7 +163,7 @@ def _scrape_article(link, lang):
     if content == None:
         return None
     
-    _lang = 'en'
+    _lang = 'english'
     if lang == 'id':
         _lang = 'indonesian'
     # later add more language, mapping hl query -> nltk language
