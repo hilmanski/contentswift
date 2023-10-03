@@ -1,4 +1,5 @@
 import os
+import random
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from serpapi import GoogleSearch
@@ -137,7 +138,18 @@ async def scrape(post_id: str):
 # There's no guarantee it match available language at nltk 
 #    https://stackoverflow.com/questions/54573853/nltk-available-languages-for-stopwords
 
+# Newspaper Config
+# When using proxy
+# config = newspaper.Config()
+# config.proxies = {
+#     'http': 'http://47.74.226.8:5001' # sample only
+# }
+# config.request_timeout = 20
+
+
 def _scrape_article(link, lang):
+    # Add config=config in paramter if adding proxy/user_agents
+    # article = newspaper.Article(link, keep_article_html=True, config=config)
     article = newspaper.Article(link, keep_article_html=True)
     content = None
 
