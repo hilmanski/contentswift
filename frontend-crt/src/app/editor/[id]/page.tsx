@@ -60,36 +60,40 @@ export default async function Editor({
                         <section 
                         id="answer-box"
                         className="my-5 p-3 border border-emerald-600 text-sm">
-                        <h3 className="text-emerald-700 ">Answer Box (Featued Snippet)</h3>
-                        <p className="italic">
-                            {
-                                searchResult.answer_box.snippet
-                            }
-                        </p>
+                            <details>
+                                <summary>
+                                    <h3 className="inline-block text-emerald-700 ">Answer Box (Featued Snippet)</h3>
+                                </summary>
+                                <p className="italic">
+                                    {
+                                        searchResult.answer_box.snippet
+                                    }
+                                </p>
 
-                        {
-                            searchResult.answer_box.list && (
-                                <div>
-                                <p className="text-bold italic">Info: Features snippet is a list</p>
                                 {
-                                    searchResult.answer_box.list.map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <p>{item}</p>
-                                            </div>
-                                        )
-                                    })
+                                    searchResult.answer_box.list && (
+                                        <div>
+                                        <p className="text-bold italic">Info: Features snippet is a list</p>
+                                        {
+                                            searchResult.answer_box.list.map((item, index) => {
+                                                return (
+                                                    <div key={index}>
+                                                        <p>{item}</p>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        </div>
+                                    )
                                 }
-                                </div>
-                            )
-                        }
 
-                        <p>
-                            <a className="text-sky-700"
-                                href={searchResult.answer_box.link}>
-                                source 
-                            </a>
-                        </p>
+                                <p>
+                                    <a className="text-sky-700"
+                                        href={searchResult.answer_box.link}>
+                                        source 
+                                    </a>
+                                </p>
+                            </details>
                         </section>
                     )
                 }
@@ -97,19 +101,24 @@ export default async function Editor({
                 {
                     searchResult.related_questions.length > 0 && (
                         <section 
-                        id="related-questions"
-                        className="my-5 p-3 border border-emerald-600 text-sm">
-                        <h3 className="text-emerald-700 mb-2">Related Questions</h3>
-                        {
-                            searchResult.related_questions.map((item, index) => {
-                                return (
-                                        <div key={index} className="mb-1">
-                                            <p className="font-bold"> {item.question} </p>
-                                            <p className="italic"> {item.snippet} </p>
-                                        </div>
-                                )
-                            })
-                        }
+                            id="related-questions"
+                            className="my-5 p-3 border border-emerald-600 text-sm">
+
+                            <details>
+                                <summary>
+                                    <h3 className="inline-block text-emerald-700 mb-2">Related Questions</h3>
+                                </summary>
+                                {
+                                    searchResult.related_questions.map((item, index) => {
+                                        return (
+                                                <div key={index} className="mb-1">
+                                                    <p className="font-bold"> {item.question} </p>
+                                                    <p className="italic"> {item.snippet} </p>
+                                                </div>
+                                        )
+                                    })
+                                }
+                            </details>
                         </section>
                     )
                 }
@@ -117,18 +126,24 @@ export default async function Editor({
                 {
                     searchResult.related_searches.length > 0 && (
                         <section 
-                        id="related-searches"
-                        className="my-5 p-3 border border-emerald-600 text-sm">
-                        <h3 className="text-emerald-700 mb-2">Related Searches</h3>
-                        {
-                            searchResult.related_searches.map((item, index) => {
-                                return (
-                                        <div key={index} className="mb-1">
-                                            <p className=""> {item.query} </p>
-                                        </div>
-                                )
-                            })
-                        }
+                            id="related-searches"
+                            className="my-5 p-3 border border-emerald-600 text-sm">
+
+                        <details>   
+                            <summary>
+                                <h3 className="inline-block text-emerald-700 mb-2">Related Searches</h3>
+                            </summary>
+
+                            {
+                                searchResult.related_searches.map((item, index) => {
+                                    return (
+                                            <div key={index} className="mb-1">
+                                                <p className=""> {item.query} </p>
+                                            </div>
+                                    )
+                                })
+                            }
+                        </details>      
                         </section>
                     )
                 }

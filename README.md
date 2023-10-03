@@ -1,4 +1,4 @@
-![content swift logo](/contentswift-logo.webp)
+![content swift logo](/assets/contentswift-logo.webp)
 
 # About
 ContentSwift - Content research/optimization tool for SEO.
@@ -12,6 +12,8 @@ Surfer SEO, Frase io, ClearScope, NeuronWriter, etc.. (of course they offer more
 
 - This is for personal usage, no authentication setup needed in the app itself.
 - Sign up to [SerpApi](https://serpapi.com) to get FREE Serp search results credit
+
+![sample free content optimization tool](/assets/content-editor-sample.webp)
 
 ## Status
 Under heavy development. Not for production.
