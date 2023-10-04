@@ -32,10 +32,13 @@ Under heavy development. Not for production.
 ### Scrape API (SerpAPI)
 Scraping Google search result on our own will require a lot of time to prevent us from getting blocked and getting the proper structure. That's why we're using simple solution from SerpApi.
 
-### Python lib
+### library used
+There are many libraries used in this project, which is not possible to mention one by one.
+
 - [NLTK](https://www.nltk.org/)
 - [Newspaper](https://newspaper.readthedocs.io/en/latest/)
 - [Beautifulsoup](https://pypi.org/project/beautifulsoup4/)
+- [GoColly](https://github.com/gocolly/colly)
 
 ## Setup env file
 
