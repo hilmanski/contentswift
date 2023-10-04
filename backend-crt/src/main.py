@@ -1,4 +1,5 @@
 import os
+import requests
 # import random
 from fastapi import FastAPI
 from dotenv import load_dotenv
@@ -158,11 +159,31 @@ def _scrape_article(link, lang):
     article = newspaper.Article(link, keep_article_html=True)
     content = None
 
+
     try:
         article.download()
         article.parse()
         content = article.text
         content_html = article.article_html
+
+        # Current logic to detect if it's blocked
+        #   is by check if text results is very short
+        if len(content) < 100:
+            print("Scraping might be blocked! In case expection block not catching up")
+            print('---- link ---- \n' + link)
+            
+            # Scrape from golang endpoint
+            endpoint = "http://api-golang:8080/scrape?link=" + link
+            response = requests.get(endpoint)
+
+            if response.status_code == 200:
+                data = response.json()
+                content = data['content']
+                content_html = data['content_html']
+            else:
+                print(f"Error {response.status_code}: {response.text}")
+
+            
 
         soup = BeautifulSoup(content_html, 'html.parser')
         headings = []
@@ -174,7 +195,9 @@ def _scrape_article(link, lang):
             })
 
     except:
-        print("Error scrape. Run manual fetch ", link)
+        print("-----------")
+        print("Error scrape. Todo: run manual fetch ", link)
+        print("-----------")
         return None
 
     if content == None:

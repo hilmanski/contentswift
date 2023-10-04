@@ -21,7 +21,10 @@ Under heavy development. Not for production.
 ## Tech
 
 ### Backend 
-`backend-crt` is a docker setup for `fastApi` and `Postgre`
+`backend-crt` is a docker setup for:
+- `fastApi` at `src` for main logic
+- `Golang` at `go-app dir` for scraping helper
+- `Postgre` as database
 
 ### Frontend
 `frontend-crt` is manual `nextjs` installation
