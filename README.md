@@ -23,7 +23,7 @@ Under heavy development. Not for production.
 ### Backend 
 `backend-crt` is a docker setup for:
 - `fastApi` at `src` for main logic
-- `Golang` at `go-app dir` for scraping helper
+- `Golang` at `go-app dir` for scraping helper // current free alt to prevent getting blocked
 - `Postgre` as database
 
 ### Frontend

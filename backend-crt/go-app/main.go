@@ -3,6 +3,8 @@ package main
 import (
     "fmt"
 	// "log"
+	// "strings"
+	"regexp"
 	"encoding/json"
 
     "net/http"
@@ -32,26 +34,41 @@ func fetchArticleContent(w http.ResponseWriter, r *http.Request) {
 
 	var content, contentHTML string
 
-	// Extract the content and HTML of the article
-	c.OnHTML("body", func(e *colly.HTMLElement) {
+	mainTagExists := false
+	c.OnHTML("main", func(e *colly.HTMLElement) {
+		mainTagExists = true
+
 		// Remove all script and style elements
-		e.DOM.Find("script, style").Each(func(index int, item *goquery.Selection) {
+		e.DOM.Find("script, style, img").Each(func(index int, item *goquery.Selection) {
 			item.Remove()
 		})
-		
+
 		contentHTML, _ = e.DOM.Html()
 		content = e.Text
+
+		// double check remove img tag
+		// remove any <img ...> tags at e.text	
+		re := regexp.MustCompile(`<img[^>]*>`)
+		content = re.ReplaceAllString(content, "")
 	})
 
-	// if tag main is found, use it as the main container
-	c.OnHTML("main", func(e *colly.HTMLElement) {
+	// Fallback if main tag not exists
+	c.OnHTML("body", func(e *colly.HTMLElement) {
+		if mainTagExists {
+			return
+		}
 		// Remove all script and style elements
-		e.DOM.Find("script, style").Each(func(index int, item *goquery.Selection) {
+		e.DOM.Find("script, style, img").Each(func(index int, item *goquery.Selection) {
 			item.Remove()
 		})
 		
 		contentHTML, _ = e.DOM.Html()
 		content = e.Text
+
+		// double check remove img tag
+		// remove any <img ...> tags at e.text
+		re := regexp.MustCompile(`<img[^>]*>`)
+		content = re.ReplaceAllString(content, "")
 	})
 
 
