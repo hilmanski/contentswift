@@ -1,8 +1,10 @@
 version: '3.8'
 
 services:
-  web:
-    build: .
+  api-fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
     command: uvicorn src.main:app --host 0.0.0.0 --reload
     volumes:
       - ./src:/app/src
@@ -12,6 +14,13 @@ services:
       - db
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/crtool
+
+  api-golang:
+    build:
+      context: .
+      dockerfile: Dockerfile.go
+    ports:
+      - "8080:8080"
 
   db:
     image: postgres:13
