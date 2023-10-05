@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function TextEditor({id, prevContent}: {id: string, prevContent: string}) {
+export default function TextEditor({id, prevContent, title}: {id: string, prevContent: string, title: string}) {
 
     const [content, setContent] = useState<string>(prevContent)
 
@@ -24,7 +24,7 @@ export default function TextEditor({id, prevContent}: {id: string, prevContent: 
     return (
         <section className="ml-5 w-8/12">
             <div className="flex justify-between items-center mb-5">
-                <p className="font-bold text-xl">Text Editor</p>
+                <p className="font-bold text-xl">Title: {title}</p>
                 <button 
                     onClick={() => {saveContent()}} 
                     className="bg-sky-400 hover:bg-sky-600 p-3 rounded-lg text-white">

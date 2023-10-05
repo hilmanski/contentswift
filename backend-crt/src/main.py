@@ -177,6 +177,7 @@ def _scrape_article(link, lang):
         article.parse()
         content = article.text
         content_html = article.article_html
+        content_title = article.title
 
         # Current logic to detect if it's blocked
         #   is by check if text results is very short
@@ -246,6 +247,7 @@ def _scrape_article(link, lang):
         "link": link,
         "totalWords": totalWords,
         "keywords": keywords,
+        "title": content_title,
         "headings": headings,
     }
 
