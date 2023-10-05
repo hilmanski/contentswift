@@ -6,6 +6,9 @@ import TextEditor from "@/components/TextEditor";
 import { useEffect, useState } from "react";
 import Sidebar from "@/components/Sidebar";
 
+import { atom, useSetAtom } from 'jotai'
+import { contentAtom } from "@/utils/state";
+
 export default function Editor({
     children, params
 }: {
@@ -17,6 +20,8 @@ export default function Editor({
     const [data, setData] = useState({})
     const [searchResult, setSearchResult] = useState({})
     const [loading, setLoading] = useState(true)
+
+    const setContent = useSetAtom(contentAtom)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,6 +35,7 @@ export default function Editor({
             setLoading(false)
             setData(data)
             setSearchResult(data.search_result)
+            setContent(data.content)
         }
 
         fetchData()
@@ -64,7 +70,6 @@ export default function Editor({
                
                <TextEditor 
                     id={params.id}
-                    prevContent={data.content}
                     title={data.title} />
 
                 

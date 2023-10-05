@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { atom, useAtom } from 'jotai'
+import { contentAtom } from "@/utils/state";
 
-export default function TextEditor({id, prevContent, title}: {id: string, prevContent: string, title: string}) {
-
-    const [content, setContent] = useState<string>(prevContent)
+export default function TextEditor({id, title}: {id: string, title: string}) {
+    
+    const [content, setContent] = useAtom(contentAtom)
 
     const saveContent = () => {
         fetch(`http://localhost:8000/posts/${id}/`, {

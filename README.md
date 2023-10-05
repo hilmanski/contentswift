@@ -5,6 +5,8 @@ ContentSwift - Content research/optimization tool for SEO.
 
 Using this tool, you'll get relevant information regarding specific keyword searches and hints on what other top-ranking results did with their article/page.
 
+![sample content optimization tool - ContentSwift](/assets/sample-content-optimization-tool.webp)
+
 > Right now we're focusing on Google SERP only
 
 *The commercial version for this open source tool would be something like:

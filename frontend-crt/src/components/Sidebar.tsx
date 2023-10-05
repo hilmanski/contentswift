@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Terms from "./Terms";
 import Outline from "./Outline";
 
+
 export default function Sidebar({
     id, searchResult
 }: {
