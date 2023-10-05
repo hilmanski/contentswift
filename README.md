@@ -9,11 +9,10 @@ Using this tool, you'll get relevant information regarding specific keyword sear
 
 > Right now we're focusing on Google SERP only
 
-*The commercial version for this open source tool would be something like:
-Surfer SEO, Frase io, ClearScope, NeuronWriter, etc.. (of course they offer more features than this).*
+The commercial version for this open-source tool would be something like Surfer SEO, Frase io, ClearScope, NeuronWriter, etc.. (of course, they offer more features than this).
 
-- This is for personal usage, no authentication setup needed in the app itself.
-- Sign up to [SerpApi](https://serpapi.com) to get FREE Serp search results credit
+- This is for personaluse. No authentication setup is needed in the app itself.
+- Sign up to [SerpApi](https://serpapi.com) to get FREE Serp search results credit.
 
 
 ![sample free content optimization tool](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExanI5bm5yYzg1ZGg0OWhzMzcycnltZ2EzYzdkeGRmanZpOWZ2MXZnayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nenLVfRi9euvXekbQC/giphy.gif)
