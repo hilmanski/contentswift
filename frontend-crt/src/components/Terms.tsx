@@ -63,7 +63,7 @@ export default function Terms({id} : {id: string}) {
                 <div 
                     id="outline"
                     className="my-5 border p-5 border-green-700 text-sm">
-                    <h3 className="mt-10 mb-5 text-xl font-bold">Competitor reference</h3>
+                    <h3 className="mb-5 text-xl font-bold">Competitor reference</h3>
                     <p> Average words length: {result.averageWords} </p>
                     <div className="flex justify-between space-x-5 overflow-x-scroll">
                         {

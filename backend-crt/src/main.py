@@ -52,6 +52,8 @@ def read_root():
 
 @app.post('/search/')
 def search(search: dict):
+
+    # 1. Get google search API
     googleSearch = GoogleSearch({
         "api_key": SERPAPI_KEY,
         "engine": "google",
@@ -63,6 +65,16 @@ def search(search: dict):
         # "location": location,
     })
     result = googleSearch.get_dict()
+
+
+    #2. Get google autocomplete API
+    autocompleteSearch = GoogleSearch({
+        "api_key": SERPAPI_KEY,
+        "engine": "google_autocomplete",
+        "q": search['keyword']
+    })
+    autocompleteResult = autocompleteSearch.get_dict()
+    result['autocomplete'] = autocompleteResult['suggestions']
     
     post = add_post(
         title = search['keyword'],

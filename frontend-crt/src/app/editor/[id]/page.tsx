@@ -44,6 +44,7 @@ export default async function Editor({
                 <div className="text-sm">
                     <a className="block mt-2" href="#answer-box">#Google Results</a>
                     <a className="block mt-2" href="#related-questions">#Related Questions</a>
+                    <a className="block mt-2" href="#autocomplete">#Autocomplete</a>
                     <a className="block mt-2" href="#related-searches">#Related Searches</a>
                     <a className="block mt-2" href="#terms">#Terms</a>
                     <a className="block mt-2" href="#outline">#Outline</a>
@@ -114,6 +115,30 @@ export default async function Editor({
                                                 <div key={index} className="mb-1">
                                                     <p className="font-bold"> {item.question} </p>
                                                     <p className="italic"> {item.snippet} </p>
+                                                </div>
+                                        )
+                                    })
+                                }
+                            </details>
+                        </section>
+                    )
+                }
+
+                {
+                    searchResult.autocomplete.length > 0 && (
+                        <section 
+                            id="autocomplete"
+                            className="my-5 p-3 border border-emerald-600 text-sm">
+
+                            <details>
+                                <summary>
+                                    <h3 className="inline-block text-emerald-700 mb-2">Autocomplete</h3>
+                                </summary>
+                                {
+                                    searchResult.autocomplete.map((item, index) => {
+                                        return (
+                                                <div key={index} className="mb-1">
+                                                    {item.value}
                                                 </div>
                                         )
                                     })
