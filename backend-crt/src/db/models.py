@@ -11,6 +11,7 @@ class Post(SQLModel, table=True):
     search_query: dict = Field(sa_column=Column(JSON))
     search_result: dict = Field(sa_column=Column(JSON))
     choosen_links: dict = Field(sa_column=Column(JSON))
+    links_scrape_result: dict = Field(sa_column=Column(JSON))
     createdAt: datetime = Field(default_factory=datetime.utcnow)
     updatedAt: datetime = Field(default_factory=datetime.utcnow)
 

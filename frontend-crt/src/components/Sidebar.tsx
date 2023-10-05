@@ -162,13 +162,21 @@ export default function Sidebar({
 
         {
             menu == 'terms' && (
-                <Terms result={result} />
+                <>
+                {
+                    loading ?  <p>Loading ... (Up to 1 minutes) </p> : <Terms result={result} />                    
+                }
+                </>
             )
         }
 
         {
             menu == 'outline' && (
-                <Outline result={result} />
+                <>
+                {
+                    loading ?  <p>Loading ... (Up to 1 minutes)</p> : <Outline result={result} />                    
+                }
+                </>
             )
         }
         

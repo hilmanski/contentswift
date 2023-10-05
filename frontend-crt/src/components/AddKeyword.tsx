@@ -63,8 +63,8 @@ export default function AddKeyword() {
         )
       }
 
-
-        <p className="font-bold">Add New Content+</p>
+      <form action="#" className="p-5 border border-black rounded-xl">
+        <p className="font-bold text-xl">Add New Content+</p>
 
         <div className="my-5">
             <p className="">keyword you want to rank</p>
@@ -121,6 +121,7 @@ export default function AddKeyword() {
                 Submit
             </button>
         </div>
+      </form>
     </div> 
     )
 }

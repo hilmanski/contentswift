@@ -124,8 +124,16 @@ def deletePost(post_id: str):
 @app.get('/scrape/{post_id}')
 async def scrape(post_id: str):
     post = get_post(post_id)
-    links = post.choosen_links
 
+    # Return early if exists
+    if post.links_scrape_result:
+        return {
+            "status": "success",
+            "data": post.links_scrape_result
+        }
+
+    # Scrape links if new
+    links = post.choosen_links
     lang = post.search_query['hl']
 
     contentInfo = []
@@ -143,13 +151,18 @@ async def scrape(post_id: str):
     topKeywords = _getTopKeywords(allKeywords) 
     averageWords = sum([content['totalWords'] for content in contentInfo]) / len(contentInfo)
 
+    links_scrape_result =  {
+        "contentInfo": contentInfo,
+        "topKeywords": topKeywords,
+        "averageWords": averageWords
+    }
+    update_post(post_id, {
+        "links_scrape_result": links_scrape_result
+    })
+
     return {
         "status": "success",
-        "data": {
-            "contentInfo": contentInfo,
-            "topKeywords": topKeywords,
-            "averageWords": averageWords
-        }
+        "data": links_scrape_result
     }
 
 # Currently lang get from hl query parameter
