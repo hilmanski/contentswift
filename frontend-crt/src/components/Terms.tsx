@@ -7,7 +7,7 @@ export default function Terms({result} : {result: any}) {
 
     const countProgress = (term: string, targetCount: number) => {
         const regex = new RegExp(`\\b${term}\\b`, 'gi');
-        const actualCount = (content.match(regex) || []).length;
+        const actualCount = (content?.match(regex) || []).length;
         const percentage = (actualCount / targetCount) * 100
 
         return {
