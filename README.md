@@ -3,6 +3,8 @@
 # About
 ContentSwift - Content research/optimization tool for SEO.
 
+Watch [Demo Video at Youtube](https://www.youtube.com/watch?v=HL9sPYXd1Ws&t=115s)
+
 Using this tool, you'll get relevant information regarding specific keyword searches and hints on what other top-ranking results did with their article/page.
 
 ![sample content optimization tool - ContentSwift](/assets/sample-content-optimization-tool.webp)
